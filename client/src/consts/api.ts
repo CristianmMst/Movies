@@ -5,4 +5,4 @@ export const API_IMAGE_POSTER_DETAIL: string =
   "https://image.tmdb.org/t/p/w300";
 export const API_IMAGE: string =
   "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/";
-export const BACKEND = "https://movies-api-af8m.onrender.com";
+export const BACKEND = "https://movies-nya3.onrender.com";
