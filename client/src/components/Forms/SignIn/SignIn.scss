@@ -1,0 +1,12 @@
+@import "@/styles/sass/colors";
+@import "@/styles/sass/mixins";
+
+.Form-container {
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+
+.SignIn {
+  @include Form(28rem, 75%);
+}

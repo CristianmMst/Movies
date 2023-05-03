@@ -1,0 +1,100 @@
+@import "@/styles/sass/colors";
+@import "@/styles/sass/mixins";
+
+.UserNavbar {
+  cursor: pointer;
+  width: 10rem;
+  padding: 0.5rem;
+  position: relative;
+  border-radius: 0.5rem;
+  background-color: rgb(60, 100, 255);
+  @include flex(center, space-between);
+
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-logo {
+      width: 1.5rem;
+    }
+    &-text {
+      color: white;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      justify-self: flex-start;
+    }
+  }
+
+  &-button {
+    padding: 2px;
+    border-radius: 5px;
+    @include flex(center, center);
+    background-color: rgb(30, 70, 220);
+  }
+
+  &-modal {
+    right: 0;
+    top: 100%;
+    opacity: 0;
+    width: 10rem;
+    height: 6rem;
+    display: none;
+    margin-top: 1rem;
+    position: absolute;
+    border-radius: 0.5rem;
+    background-color: rgb(60, 100, 255);
+
+    &:before {
+      width: 0;
+      top: -5px;
+      height: 0;
+      content: "";
+      right: 0.7rem;
+      position: absolute;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid rgb(60, 100, 255);
+    }
+
+    &-actions {
+      color: white;
+      height: 100%;
+      padding: 0.5rem;
+      list-style: none;
+      flex-direction: column;
+      @include flex(center, space-around);
+
+      &-link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 0.2rem;
+        padding: 0.2rem 0.5rem;
+        justify-content: flex-start;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(30, 70, 220);
+        }
+
+        p {
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    &.active {
+      display: block;
+      animation: ZoomIn 0.2s both;
+    }
+  }
+}
+@keyframes ZoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,35 @@
+@import "@/styles/sass/variables";
+
+.Search {
+  display: flex;
+  height: 2.5rem;
+  border: $border;
+  padding: 0 1.5rem;
+  align-items: center;
+  border-radius: 5rem;
+  justify-content: space-between;
+  background-color: $dark-blue-opacity;
+
+  input {
+    height: 100%;
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 0.5rem;
+
+    &::placeholder {
+      color: rgb(184, 184, 184);
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 250px;
+    input {
+      width: 100%;
+    }
+  }
+}

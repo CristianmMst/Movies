@@ -1,0 +1,10 @@
+@import "@/styles/sass/mixins";
+@import "@/styles/sass/colors";
+
+.ButtonDark {
+  @include button($dark-blue);
+}
+
+.ButtonWhite {
+  @include button($blue-ligth);
+}

@@ -1,0 +1,109 @@
+@import "@/styles/sass/colors";
+@import "@/styles/sass/mixins";
+@import "@/styles/sass/variables";
+
+.Links {
+  margin-top: 1rem;
+}
+
+.NavbarMobile {
+  top: 0;
+  z-index: 6;
+  width: 100%;
+  position: fixed;
+  padding: 2rem 2rem;
+  transition: all 0.5s ease;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 26, 50, 1) 1%,
+    rgba(20, 26, 50, 0) 100%
+  );
+  @include flex(center, space-between);
+
+  &::after {
+    top: 0;
+    width: 78%;
+    left: -100%;
+    content: "";
+    height: 100vh;
+    position: absolute;
+    transition: left 0.5s ease;
+    background-color: $blue-dark;
+  }
+
+  &.active {
+    background: none;
+    padding: 1rem 2rem;
+    background-color: $blue-dark;
+  }
+
+  &-right {
+    width: 20rem;
+    @include flex(center, space-between);
+  }
+
+  &-logo {
+    width: 5rem;
+    &-pequeño {
+      width: 14rem;
+      align-self: center;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &-links {
+    top: 20px;
+    left: -100%;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    transition: left 0.5s ease;
+    justify-content: space-between;
+
+    &-link {
+      margin-bottom: 0.2rem;
+      p {
+        width: 80px;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+        margin-left: 0.2rem;
+        li {
+          a {
+            color: #cdcdcd;
+            font-size: 0.8rem;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  &-buttons {
+    display: flex;
+    margin: 1rem 0;
+    justify-content: space-between;
+  }
+
+  &-menu {
+    padding: 0.5rem;
+    border-radius: 50%;
+    @include flex(center, center);
+    background-color: $blue-ligth;
+  }
+}
+
+.active-mobile {
+  &::after {
+    left: 0;
+  }
+
+  .NavbarMobile-links {
+    left: 25px;
+    z-index: 6;
+  }
+}

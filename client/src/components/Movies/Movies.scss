@@ -1,0 +1,45 @@
+@import "@/styles/sass/colors";
+
+.Movies {
+  gap: 1rem;
+  display: grid;
+  padding: 1rem;
+  margin-top: 80px;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(6, 1fr);
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.Movie {
+  width: 180px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: $dark-blue;
+
+  &-content {
+    width: 100%;
+    padding: 0.5rem;
+    max-width: 200px;
+    &-title {
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+    &-date {
+      color: #d2d2d2;
+      font-size: 0.7rem;
+    }
+  }
+  &-image {
+    width: 100%;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 160px;
+  }
+}

@@ -1,0 +1,109 @@
+@import "@/styles/sass/colors";
+@import "@/styles/sass/mixins";
+@import "@/styles/sass/variables";
+
+.Navbar {
+  top: 0;
+  width: 100%;
+  z-index: 90;
+  position: fixed;
+  padding: 2rem 8rem;
+  transition: all 0.5s ease;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 26, 50, 0.8) 1%,
+    rgba(20, 26, 50, 0) 100%
+  );
+  @include flex(center, space-between);
+
+  &.active {
+    background: none;
+    padding: 1rem 8rem;
+    background-color: $blue-dark;
+  }
+
+  &-left {
+    width: 25rem;
+    list-style: none;
+    position: relative;
+    @include flex(center, space-between);
+    &-logo {
+      width: 7rem;
+    }
+    &-link {
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+  }
+
+  &-right {
+    width: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-movies,
+  &-series {
+    display: flex;
+    width: 5rem;
+    height: 3rem;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      .dropdown-menu {
+        display: block;
+      }
+    }
+  }
+}
+
+.dropdown-menu {
+  left: 0;
+  top: 100%;
+  width: 10rem;
+  display: none;
+  height: 5.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  border-radius: 0.5rem;
+  animation: ZoomIn 0.2s both;
+  background-color: rgb(60, 100, 255);
+
+  div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a {
+      color: white;
+      padding: 0.2rem 0.5rem;
+      text-decoration: none;
+      border-radius: 0.2rem;
+      &:hover {
+        background-color: rgb(30, 70, 220);
+      }
+    }
+  }
+
+  &:before {
+    width: 0;
+    top: -5px;
+    height: 0;
+    content: "";
+    left: 1rem;
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(60, 100, 255);
+  }
+  &:hover {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,62 @@
+.userMovies {
+  &-container {
+    width: 15rem;
+    position: relative;
+
+    button {
+      top: 0;
+      width: 3rem;
+      right: -1rem;
+      display: flex;
+      height: 3rem;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      position: absolute;
+      align-items: center;
+      border-radius: 100%;
+      justify-content: center;
+      background-color: red;
+      border: 0.5rem solid rgba(8, 15, 40, 1);
+    }
+  }
+  max-width: 12rem;
+  position: relative;
+
+  img {
+    width: 100%;
+    border-radius: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .userMovies {
+    &-container {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .userMovies {
+    &-container {
+      width: 7rem;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .userMovies {
+    &-container {
+      width: 10rem;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .userMovies {
+    &-container {
+      width: 8rem;
+    }
+  }
+}

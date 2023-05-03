@@ -1,0 +1,12 @@
+@import "@/styles/sass/colors";
+@import "@/styles/sass/mixins";
+
+.Login {
+  @include Form(25rem, 60%);
+}
+
+.forgot {
+  color: #232350;
+  font-size: 0.9rem;
+  align-self: center;
+}

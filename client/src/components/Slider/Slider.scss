@@ -1,0 +1,41 @@
+@import "../../styles/sass/colors";
+@import "../../styles/sass/mixins";
+
+.Popular {
+  margin: 2rem;
+
+  @media (max-width: 600px) {
+    margin: 1rem;
+  }
+
+  &-title {
+    color: white;
+    margin: 0 0 1rem 0.5rem;
+  }
+}
+
+.Swiper {
+  &-img {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 1rem;
+
+    @media (max-width: 700px) {
+      padding: 0;
+    }
+  }
+}
+
+.swiper {
+  display: flex;
+  &-button-prev {
+    @media (max-width: 700px) {
+      display: none !important;
+    }
+  }
+  &-button-next {
+    @media (max-width: 700px) {
+      display: none !important;
+    }
+  }
+}
