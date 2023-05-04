@@ -3,16 +3,23 @@ import { MovieDetail } from "@/types";
 import { FaBookmark } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
-import { createMovieUser } from "@/redux/slices/userSlice";
+import { useAppDispatch } from "@/hooks/redux";
 import { useGetUser } from "@/hooks/useGetUser";
+import { createMovieUser } from "@/redux/slices/userSlice";
+import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
+import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
 
 export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { _id, token } = useGetUser();
+  const { _id, token, movies } = useGetUser();
+
+  const movieIsFavorite = movies
+    .filter((m) => m.type === "favorite")
+    .find((m) => +m.id === movie.id);
+  const movieIsSave = movies
+    .filter((m) => m.type === "save")
+    .find((m) => +m.id === movie.id);
 
   const onClick = (type: string) => {
     if (token) {
@@ -27,6 +34,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
       navigate("/login");
     }
   };
+
   return (
     <div className="Detail">
       <img
@@ -67,14 +75,20 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
               className="Detail-buttons-button"
               onClick={() => onClick("favorite")}
             >
-              <AiFillHeart size={20} color="white" />
+              <AiFillHeart
+                size={20}
+                color={`${movieIsFavorite ? "red" : "white"}`}
+              />
               <span className="Detail-buttons-tooltip">Favoritos</span>
             </button>
             <button
               className="Detail-buttons-button"
               onClick={() => onClick("save")}
             >
-              <FaBookmark size={20} color="white" />
+              <FaBookmark
+                size={20}
+                color={`${movieIsSave ? "yellow" : "white"}`}
+              />
               <span className="Detail-buttons-tooltip">Guardar</span>
             </button>
           </div>
