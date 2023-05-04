@@ -31,9 +31,11 @@ export const getUserData = async (id: string) => {
 export const createMovie = async (movie: Movie) => {
   const movieExistsOnUser = await movieModel.findOne({
     id: movie.id,
+    type: movie.type,
     userId: movie.userId,
   });
 
+  console.log(movieExistsOnUser);
   if (!movieExistsOnUser) return await movieModel.create(movie);
   else throw new Error("Esta pelicula ya existe");
 };
