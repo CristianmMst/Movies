@@ -4,59 +4,32 @@ import { FaBookmark } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
-import {
-  Movie,
-  createMovieUser,
-  removeMovieUser,
-} from "@/redux/slices/userSlice";
+import { useGetUser } from "@/hooks/useGetUser";
+import { createMovieUser } from "@/redux/slices/userSlice";
 import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
 import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
-import { useEffect, useState } from "react";
 
-export const Detail = ({
-  movie,
-  movies,
-  user,
-}: {
-  movie: MovieDetail;
-  movies: Movie[];
-  user: {
-    token: string;
-    _id: string;
-  };
-}) => {
+export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [movieIsSave, setMovieIsSave] = useState(false);
-  const [movieIsFavorite, setMovieIsFavorite] = useState(false);
+  const { _id, token, movies } = useGetUser();
 
-  useEffect(() => {
-    const movieIsFavorite = movies
-      .filter((m) => m.type === "favorite")
-      .find((m) => +m.id === movie.id);
-    const movieIsSave = movies
-      .filter((m) => m.type === "save")
-      .find((m) => +m.id === movie.id);
-    setMovieIsSave(!!movieIsSave);
-    setMovieIsFavorite(!!movieIsFavorite);
-  }, []);
+  const movieIsFavorite = movies
+    .filter((m) => m.type === "favorite")
+    .find((m) => +m.id === movie.id);
+  const movieIsSave = movies
+    .filter((m) => m.type === "save")
+    .find((m) => +m.id === movie.id);
 
   const onClick = (type: string) => {
-    if (user.token) {
-      const movieFind: any = movies.find((m) => +m.id === movie.id);
-      if (movieFind) {
-        dispatch(removeMovieUser(movieFind._id, user.token));
-        type === "favorite" ? setMovieIsFavorite(false) : setMovieIsSave(false);
-      } else {
-        const createMovie = {
-          id: movie.id,
-          type: type,
-          userId: user._id,
-          image: `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`,
-        };
-        type === "favorite" ? setMovieIsFavorite(true) : setMovieIsSave(true);
-        dispatch(createMovieUser(createMovie, user.token));
-      }
+    if (token) {
+      const createMovie = {
+        id: movie.id,
+        type: type,
+        userId: _id,
+        image: `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`,
+      };
+      dispatch(createMovieUser(createMovie, token));
     } else {
       navigate("/login");
     }

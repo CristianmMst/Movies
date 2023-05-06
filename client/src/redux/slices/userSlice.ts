@@ -3,7 +3,7 @@ import { MovieDetail } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCreateMovie, fetchDeleteMovie, fetchUserData } from "@/services";
 
-export interface Movie {
+interface Movie {
   id: string;
   _id: string;
   image: string;
