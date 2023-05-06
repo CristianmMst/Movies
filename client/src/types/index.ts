@@ -2,6 +2,7 @@ export interface Movie {
   id: number;
   image: string;
   title: string;
+  type?: string;
 }
 
 export interface SliderMovie {
@@ -39,7 +40,7 @@ export interface MovieDetail {
 }
 
 export interface genres {
-  name: string
+  name: string;
 }
 
 export interface MovieFetch {
