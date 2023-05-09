@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { NavbarMobile, NavbarPC } from "@/components";
 
 interface NavbarProps {
@@ -7,10 +6,18 @@ interface NavbarProps {
 }
 
 export function Navbar({ active }: NavbarProps) {
-  const [width, setWidth] = useState(window.screen.width);
-  window.addEventListener("resize", () => {
-    setWidth(window.screen.width);
-  });
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       {width < 700 ? (
@@ -18,7 +25,6 @@ export function Navbar({ active }: NavbarProps) {
       ) : (
         <NavbarPC active={active} />
       )}
-      <Outlet />
     </>
   );
 }
