@@ -1,17 +1,18 @@
 import "./Detail.scss";
 import { MovieDetail } from "@/types";
+import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGetUser } from "@/hooks/useGetUser";
-import { createMovieUser } from "@/redux/slices/userSlice";
+import { createMovieUser, removeMovieUser } from "@/redux/slices/userSlice";
 import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
 import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
-import { useEffect, useState } from "react";
 
 export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
+
   const dispatch = useAppDispatch();
   const { _id, token, movies } = useGetUser();
   const [isSave, setIsSave] = useState(false);
@@ -26,13 +27,21 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
 
   const onClick = (type: string) => {
     if (token) {
-      const createMovie = {
-        id: movie.id,
-        type: type,
-        userId: _id,
-        image: `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`,
-      };
-      dispatch(createMovieUser(createMovie, token));
+      const movieFind = movies.find((m) => +m.id === movie.id);
+
+      if (movieFind) {
+        dispatch(removeMovieUser(movieFind._id, token));
+        type === "favorite" ? setIsFavorite(false) : setIsSave(false);
+      } else {
+        const createMovie = {
+          id: movie.id,
+          type: type,
+          userId: _id,
+          image: `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`,
+        };
+        type === "favorite" ? setIsFavorite(true) : setIsSave(true);
+        dispatch(createMovieUser(createMovie, token));
+      }
     } else {
       navigate("/login");
     }

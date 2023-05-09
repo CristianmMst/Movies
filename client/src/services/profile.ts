@@ -30,11 +30,12 @@ export const fetchDeleteMovie = async (id: string, token: string) => {
 
 export const fetchCreateMovie = async (movie: MovieDetail, token: string) => {
   try {
-    await axios.post(`${BACKEND}/profile/movies`, movie, {
+    const { data } = await axios.post(`${BACKEND}/profile/movies`, movie, {
       headers: {
         Authorization: token,
       },
     });
+    return data;
   } catch (error) {
     console.log(error);
   }

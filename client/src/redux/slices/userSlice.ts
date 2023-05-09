@@ -46,6 +46,9 @@ const userSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("username");
     },
+    createMovie: (state, { payload }) => {
+      state.movies = state.movies.concat(payload);
+    },
     removeMovie: (state, { payload }) => {
       state.movies = payload.movies;
     },
@@ -67,7 +70,8 @@ export const createMovieUser =
   (movie: MovieDetail, token: string): AppThunk =>
   async (dispatch) => {
     try {
-      await fetchCreateMovie(movie, token);
+      const data = await fetchCreateMovie(movie, token);
+      dispatch(createMovie(data));
     } catch (error) {
       console.log(error);
     }
@@ -84,6 +88,7 @@ export const removeMovieUser =
     }
   };
 
-export const { setToken, clearToken, setUser, removeMovie } = userSlice.actions;
+export const { setToken, clearToken, setUser, removeMovie, createMovie } =
+  userSlice.actions;
 
 export default userSlice.reducer;
