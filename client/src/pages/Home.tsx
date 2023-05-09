@@ -11,7 +11,7 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      {carousel.length ? <Carousel carousel={carousel} /> : null}
+      {carousel.length && <Carousel carousel={carousel} />}
       {popular.length && (
         <Slider movies={popular.slice(0, 10)} title={"Populares"} />
       )}
