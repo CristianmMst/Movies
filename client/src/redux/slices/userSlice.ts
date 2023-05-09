@@ -50,7 +50,7 @@ const userSlice = createSlice({
       state.movies = state.movies.concat(payload);
     },
     removeMovie: (state, { payload }) => {
-      state.movies = payload.movies;
+      state.movies = state.movies.filter((m) => m.id !== payload.id);
     },
   },
 });
