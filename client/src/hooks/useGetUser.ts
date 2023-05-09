@@ -7,7 +7,7 @@ export const useGetUser = () => {
   const { token, _id, movies } = useAppSelector((state) => state.user);
   useEffect(() => {
     dispatch(setUserFetch(token!));
-  }, [movies]);
+  }, []);
 
   return { token, _id, movies };
 };

@@ -8,18 +8,21 @@ import { useGetUser } from "@/hooks/useGetUser";
 import { createMovieUser } from "@/redux/slices/userSlice";
 import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
 import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
+import { useEffect, useState } from "react";
 
 export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { _id, token, movies } = useGetUser();
+  const [isSave, setIsSave] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const movieIsFavorite = movies
-    .filter((m) => m.type === "favorite")
-    .find((m) => +m.id === movie.id);
-  const movieIsSave = movies
-    .filter((m) => m.type === "save")
-    .find((m) => +m.id === movie.id);
+  useEffect(() => {
+    setIsSave(!!movies.find((m) => +m.id === movie.id && m.type === "save"));
+    setIsFavorite(
+      !!movies.find((m) => +m.id === movie.id && m.type === "favorite")
+    );
+  }, [movies]);
 
   const onClick = (type: string) => {
     if (token) {
@@ -77,7 +80,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
             >
               <AiFillHeart
                 size={20}
-                color={`${movieIsFavorite ? "red" : "white"}`}
+                color={`${isFavorite ? "red" : "white"}`}
               />
               <span className="Detail-buttons-tooltip">Favoritos</span>
             </button>
@@ -85,10 +88,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
               className="Detail-buttons-button"
               onClick={() => onClick("save")}
             >
-              <FaBookmark
-                size={20}
-                color={`${movieIsSave ? "yellow" : "white"}`}
-              />
+              <FaBookmark size={20} color={`${isSave ? "yellow" : "white"}`} />
               <span className="Detail-buttons-tooltip">Guardar</span>
             </button>
           </div>
