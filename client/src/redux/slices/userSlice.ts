@@ -1,23 +1,9 @@
 import { AppThunk } from "../store";
-import { MovieDetail } from "@/types";
+import { MovieDetail, User } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchCreateMovie, fetchDeleteMovie, fetchUserData } from "@/services";
 
-interface Movie {
-  id: string;
-  _id: string;
-  image: string;
-  type: "save" | "favorite";
-}
-interface UserState {
-  _id: string;
-  email: string;
-  token: string | null;
-  username: string | null;
-  movies: Movie[];
-}
-
-const initialState: UserState = {
+const initialState: User = {
   _id: "",
   email: "",
   token: localStorage.getItem("token") || null,
@@ -47,7 +33,7 @@ const userSlice = createSlice({
       localStorage.removeItem("username");
     },
     createMovie: (state, { payload }) => {
-      state.movies = state.movies.concat(payload);
+      state.movies = [...state.movies, payload];
     },
     removeMovie: (state, { payload }) => {
       state.movies = state.movies.filter((m) => m.id !== payload.id);
