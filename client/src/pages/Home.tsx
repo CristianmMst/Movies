@@ -3,8 +3,9 @@ import { useAppSelector } from "@/hooks/redux";
 import { Slider, Carousel, Navbar } from "@/components";
 
 export const Home = () => {
-  const { carousel } = useAppSelector((state) => state.movies);
-  const { popular, topRated } = useAppSelector((state) => state.movies);
+  const { carousel, popular, topRated } = useAppSelector(
+    (state) => state.movies
+  );
 
   useGetMovies();
 
