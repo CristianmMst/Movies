@@ -50,3 +50,7 @@ export interface MovieFetch {
 export interface Fetch {
   results: MovieFetch[];
 }
+
+export interface FetchSearch {
+  results: MovieDetail[];
+}

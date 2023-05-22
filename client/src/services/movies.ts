@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { axiosInstance } from "@/utils";
-import { Fetch, MovieDetail, MovieFetch } from "@/types";
+import { Fetch, FetchSearch, MovieDetail, MovieFetch } from "@/types";
 
 export const fetchCarousel = async () => {
   try {
@@ -53,6 +53,17 @@ export const fetchMovieDetail = async (id: number) => {
   try {
     const { data }: AxiosResponse<MovieDetail> = await axiosInstance.get(
       `/movie/${id}`
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchSearchMovie = async (name: string) => {
+  try {
+    const { data }: AxiosResponse<FetchSearch> = await axiosInstance.get(
+      `/search/movie?query=${name}`
     );
     return data;
   } catch (error) {

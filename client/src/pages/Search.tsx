@@ -1,18 +1,30 @@
-import { Navbar } from "@/components";
-import { useEffect } from "react";
+import { MovieDetail } from "@/types";
+import { useEffect, useState } from "react";
+import { Movie, Navbar } from "@/components";
+import { fetchSearchMovie } from "@/services";
 import { useLocation } from "react-router-dom";
 
 export const Search = () => {
   const { search } = useLocation();
+  const [movies, setMovies] = useState<MovieDetail[]>();
   const queryValue = new URLSearchParams(search).get("search");
 
   useEffect(() => {
-    console.log(queryValue);
+    setMovies([]);
+    (async () => {
+      const movies = await fetchSearchMovie(queryValue!);
+      setMovies(movies?.results);
+    })();
   }, [search]);
 
   return (
     <div>
-      <Navbar />
+      <Navbar active />
+      <div className="Movies">
+        {movies?.map((movie, index) => (
+          <Movie key={index} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 };
