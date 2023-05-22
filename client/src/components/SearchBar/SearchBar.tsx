@@ -2,12 +2,16 @@ import "./SearhBar.scss";
 import { FiSearch } from "react-icons/fi";
 
 export const SearchBar = () => (
-  <div className="Search">
-    <input type={"text"} placeholder="Buscar películas" />
-    <button type={"button"}>
-      <FiSearch className="icon" size={24} />
+  <form className="Search">
+    <input
+      type={"text"}
+      className="Search-input"
+      placeholder="Buscar películas"
+    />
+    <button className="Search-button" type={"button"}>
+      <FiSearch className="Search-button-icon" size={24} />
     </button>
-  </div>
+  </form>
 );
 
 export default SearchBar;

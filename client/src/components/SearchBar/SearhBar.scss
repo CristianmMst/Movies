@@ -10,7 +10,7 @@
   justify-content: space-between;
   background-color: $dark-blue-opacity;
 
-  input {
+  &-input {
     height: 100%;
     color: white;
     font-size: 0.8rem;
@@ -19,16 +19,21 @@
     &::placeholder {
       color: rgb(184, 184, 184);
     }
+  }
 
-    button {
-      display: flex;
-      align-items: center;
+  &-button {
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      color: white;
     }
   }
 
   @media screen and (max-width: 700px) {
     width: 250px;
-    input {
+
+    &-input {
       width: 100%;
     }
   }
