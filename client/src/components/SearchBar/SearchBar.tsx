@@ -1,7 +1,7 @@
-import "./SearhInput.scss";
+import "./SearhBar.scss";
 import { FiSearch } from "react-icons/fi";
 
-export const SearchInput = () => (
+export const SearchBar = () => (
   <div className="Search">
     <input type={"text"} placeholder="Buscar películas" />
     <button type={"button"}>
@@ -10,4 +10,4 @@ export const SearchInput = () => (
   </div>
 );
 
-export default SearchInput;
+export default SearchBar;

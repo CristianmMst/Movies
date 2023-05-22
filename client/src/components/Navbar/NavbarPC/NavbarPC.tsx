@@ -2,7 +2,7 @@ import "./NavbarPC.scss";
 import { useState } from "react";
 import logo from "@/assets/logo.svg";
 import { Link } from "react-router-dom";
-import { Button, SearchInput, UserNavbar } from "@/components";
+import { Button, SearchBar, UserNavbar } from "@/components";
 import { useAppSelector } from "@/hooks/redux";
 
 interface NavbarProps {
@@ -45,7 +45,7 @@ export const NavbarPC = ({ active }: NavbarProps) => {
         </div>
       </div>
       <div className="Navbar-right">
-        <SearchInput />
+        <SearchBar />
         {token ? (
           <UserNavbar />
         ) : (

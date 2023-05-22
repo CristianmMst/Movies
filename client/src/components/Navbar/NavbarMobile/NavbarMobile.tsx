@@ -6,7 +6,7 @@ import { useAppSelector } from "@/hooks/redux";
 import { MdOutlineMenu } from "react-icons/md";
 import { AiOutlineClose } from "react-icons/ai";
 import logoPequeño from "@/assets/logoPequeño.svg";
-import { Button, SearchInput, UserNavbar } from "@/components";
+import { Button, SearchBar, UserNavbar } from "@/components";
 
 interface NavbarProps {
   fixed?: boolean;
@@ -48,7 +48,7 @@ export const NavbarMobile = ({ active }: NavbarProps) => {
             src={logoPequeño}
             alt="logo"
           />
-          <SearchInput />
+          <SearchBar />
           {token ? (
             <div className="NavbarMobile-buttons">
               <UserNavbar />

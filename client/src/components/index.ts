@@ -8,6 +8,6 @@ export * from "./Forms/Login/Login";
 export * from "./Carousel/Carousel";
 export * from "./Forms/SignIn/SignIn";
 export * from "./UserNavbar/UserNavbar";
-export * from "./SearchInput/SearchInput";
+export * from "./SearchBar/SearchBar";
 export * from "./Navbar/NavbarPC/NavbarPC";
 export * from "./Navbar/NavbarMobile/NavbarMobile";
