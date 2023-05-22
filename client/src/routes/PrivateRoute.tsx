@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { ReactNode } from "react";
 import { Navigate } from "react-router-dom";
+import { useAppSelector } from "@/hooks/redux";
 
 type Props = {
   children?: ReactNode;

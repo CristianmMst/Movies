@@ -1,7 +1,7 @@
 import PrivateRoute from "./PrivateRoute";
 import { SignIn, LogIn } from "@/components";
 import { Route, Routes } from "react-router-dom";
-import { Home, MovieDetail, Movies, NotFound, Profile } from "@/pages";
+import { Home, MovieDetail, Movies, NotFound, Profile, Search } from "@/pages";
 
 export const AppRoutes = () => {
   return (
@@ -9,6 +9,7 @@ export const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/signin" element={<SignIn />} />
+      <Route path="/movies" element={<Search />} />
       <Route path="/movie/:id" element={<MovieDetail />} />
       <Route path="/movies/:category" element={<Movies />} />
       <Route
