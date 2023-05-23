@@ -21,7 +21,7 @@ export const Slider = ({ movies, title }: PopularMoviesProps) => {
         freeMode
         navigation
         spaceBetween={25}
-        slidesPerView={6}
+        slidesPerView={7}
         modules={[Navigation, FreeMode]}
         breakpoints={{
           0: {
@@ -35,7 +35,13 @@ export const Slider = ({ movies, title }: PopularMoviesProps) => {
             slidesPerView: 4,
           },
           1100: {
+            slidesPerView: 5,
+          },
+          1300: {
             slidesPerView: 6,
+          },
+          1920: {
+            slidesPerView: 7,
           },
         }}
       >
