@@ -3,7 +3,7 @@ export * from "./Navbar/Navbar";
 export * from "./Slider/Slider";
 export * from "./Detail/Detail";
 export * from "./Button/Button";
-export * from "./Movies/Movies";
+export * from "./Movie/Movie";
 export * from "./Forms/Login/Login";
 export * from "./Carousel/Carousel";
 export * from "./Forms/SignIn/SignIn";

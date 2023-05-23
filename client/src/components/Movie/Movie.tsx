@@ -1,4 +1,4 @@
-import "./Movies.scss";
+import "./Movie.scss";
 import { MovieDetail } from "@/types";
 import { API_IMAGE_POSTER } from "@/consts";
 
