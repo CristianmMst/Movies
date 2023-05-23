@@ -1,3 +1,4 @@
+import { Layout } from "@/layouts";
 import PrivateRoute from "./PrivateRoute";
 import { SignIn, LogIn } from "@/components";
 import { Route, Routes } from "react-router-dom";
@@ -9,18 +10,19 @@ export const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/signin" element={<SignIn />} />
-      <Route path="/movies" element={<Search />} />
-      <Route path="/movie/:id" element={<MovieDetail />} />
-      <Route path="/movies/:category" element={<Movies />} />
-      <Route
-        path="/profile"
-        element={
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        }
-      />
-
+      <Route path="/" element={<Layout />}>
+        <Route path="/movies" element={<Search />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/movies/:category" element={<Movies />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }
+        />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

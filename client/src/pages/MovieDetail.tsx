@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Navbar } from "@/components";
 import { Detail } from "@/components";
 import { useParams } from "react-router-dom";
 import { getDetail } from "@/redux/slices/movieSlice";
@@ -15,9 +14,6 @@ export const MovieDetail = () => {
   }, []);
 
   return (
-    <>
-      <Navbar active={true} />
-      {Object.keys(movieDetail).length && <Detail movie={movieDetail} />}
-    </>
+    <>{Object.keys(movieDetail).length && <Detail movie={movieDetail} />}</>
   );
 };

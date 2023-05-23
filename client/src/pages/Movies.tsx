@@ -1,6 +1,6 @@
 import { useEffect } from "react";
+import { Movie } from "@/components";
 import { useParams } from "react-router-dom";
-import { Movie, Navbar } from "@/components";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import {
   cleanState,
@@ -22,7 +22,6 @@ export function Movies() {
 
   return (
     <div className="Movies">
-      <Navbar active />
       {category === "popular"
         ? popular.map((movie, index) => <Movie key={index} movie={movie} />)
         : topRated.map((movie, index) => <Movie key={index} movie={movie} />)}

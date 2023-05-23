@@ -1,6 +1,6 @@
+import { Movie } from "@/components";
 import { MovieDetail } from "@/types";
 import { useEffect, useState } from "react";
-import { Movie, Navbar } from "@/components";
 import { fetchSearchMovie } from "@/services";
 import { useLocation } from "react-router-dom";
 
@@ -18,13 +18,10 @@ export const Search = () => {
   }, [search]);
 
   return (
-    <div>
-      <Navbar active />
-      <div className="Movies">
-        {movies?.map((movie, index) => (
-          <Movie key={index} movie={movie} />
-        ))}
-      </div>
+    <div className="Movies">
+      {movies?.map((movie, index) => (
+        <Movie key={index} movie={movie} />
+      ))}
     </div>
   );
 };
