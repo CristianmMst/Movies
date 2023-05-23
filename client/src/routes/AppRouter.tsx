@@ -11,8 +11,8 @@ export const AppRoutes = () => {
       <Route path="/login" element={<LogIn />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/" element={<Layout />}>
-        <Route path="/movies" element={<Search />} />
         <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/movies/search" element={<Search />} />
         <Route path="/movies/:category" element={<Movies />} />
         <Route
           path="/profile"

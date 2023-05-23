@@ -13,7 +13,7 @@ export const SearchBar = () => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(`/movies?search=${search}`);
+    navigate(`/movies/search?query=${search}`);
   };
 
   return (

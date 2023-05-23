@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 export const Search = () => {
   const { search } = useLocation();
   const [movies, setMovies] = useState<MovieDetail[]>();
-  const queryValue = new URLSearchParams(search).get("search");
+  const queryValue = new URLSearchParams(search).get("query");
 
   useEffect(() => {
     setMovies([]);
