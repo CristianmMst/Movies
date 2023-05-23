@@ -1,6 +1,7 @@
 import "./Movie.scss";
 import { MovieDetail } from "@/types";
 import { API_IMAGE_POSTER } from "@/consts";
+import { Link } from "react-router-dom";
 
 interface MoviesProps {
   movie: MovieDetail;
@@ -8,7 +9,7 @@ interface MoviesProps {
 
 export const Movie = ({ movie }: MoviesProps) => {
   return (
-    <div className="Movie">
+    <Link className="Movie" to={`/movie/${movie.id}`}>
       <img
         className="Movie-image"
         src={`${API_IMAGE_POSTER}${movie.poster_path}`}
@@ -18,7 +19,7 @@ export const Movie = ({ movie }: MoviesProps) => {
         <p className="Movie-content-title">{movie.title}</p>
         <p className="Movie-content-date">{movie.release_date}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

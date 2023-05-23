@@ -20,7 +20,7 @@ export function Navbar({ active }: NavbarProps) {
 
   return (
     <>
-      {width < 700 ? (
+      {width < 768 ? (
         <NavbarMobile active={active} />
       ) : (
         <NavbarPC active={active} />

@@ -1,23 +1,28 @@
 @import "@/styles/sass/colors";
 
 .Movies {
-  gap: 1rem;
+  gap: 2rem;
+  width: 100%;
   display: grid;
   padding: 1rem;
   margin-top: 80px;
   align-items: center;
   justify-items: center;
-  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: dense;
+  place-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
 
-  @media screen and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
+  @media screen and (max-width: 464px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
 .Movie {
-  width: 180px;
-  height: 350px;
+  width: 100%;
+  height: 25rem;
+  min-width: 10rem;
   overflow: hidden;
+  text-decoration: none;
   border-radius: 0.5rem;
   background-color: $dark-blue;
 
@@ -39,7 +44,10 @@
     width: 100%;
   }
 
-  @media screen and (max-width: 700px) {
-    width: 160px;
+  @media screen and (max-width: 464px) {
+    height: 23rem;
+  }
+  @media screen and (max-width: 400px) {
+    height: 20rem;
   }
 }
