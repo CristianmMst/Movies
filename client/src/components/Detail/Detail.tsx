@@ -1,5 +1,6 @@
 import "./Detail.scss";
 import { MovieDetail } from "@/types";
+import image from "@/assets/default.svg";
 import { useEffect, useState } from "react";
 import { FaBookmark } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
@@ -37,7 +38,9 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
           id: movie.id,
           type: type,
           userId: _id,
-          image: `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`,
+          image: movie.poster_path
+            ? `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`
+            : null,
         };
         type === "favorite" ? setIsFavorite(true) : setIsSave(true);
         dispatch(createMovieUser(createMovie, token));
@@ -54,15 +57,29 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
         src={`${API_IMAGE}${movie?.backdrop_path}`}
         alt={`${movie?.title}`}
       />
-      <img
-        className="Detail-img"
-        src={`${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`}
-        alt={`${movie?.title}`}
-      />
+      {movie.poster_path ? (
+        <img
+          className="Detail-img"
+          src={`${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`}
+          alt={`${movie?.title}`}
+        />
+      ) : (
+        <div className="Detail-default">
+          <img
+            src={image}
+            className="Detail-default-img"
+            alt={`${movie?.title}`}
+          />
+        </div>
+      )}
+
       <section className="Detail-content">
         <div className="Detail-content-title">
           <h1>
-            {movie?.title} ({movie?.release_date?.split("-")[0]})
+            {movie?.title}{" "}
+            {movie.release_date
+              ? `(${movie?.release_date?.split("-")[0]})`
+              : ""}
           </h1>
           <div>
             {movie?.genres?.map((genre, index, genres) => {

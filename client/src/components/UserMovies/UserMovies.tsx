@@ -1,5 +1,6 @@
 import "./UserMovies.scss";
 import { Link } from "react-router-dom";
+import image from "@/assets/default.svg";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { removeMovieUser } from "@/redux/slices/userSlice";
 
@@ -22,7 +23,13 @@ export const UserMovies = ({ movie }: UserMoviesProps) => {
   return (
     <div className="userMovies-container">
       <Link className="userMovies" to={`/movie/${movie.id}`}>
-        <img src={movie.image} />
+        {movie.image ? (
+          <img className="userMovies-img" src={movie.image} alt="movie" />
+        ) : (
+          <div className="userMovies-default">
+            <img className="userMovies-default-img" src={image} alt="movie" />
+          </div>
+        )}
       </Link>
       <button type="button" onClick={() => deleteMovie(movie._id)}>
         x

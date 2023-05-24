@@ -42,6 +42,17 @@
   }
   &-image {
     width: 100%;
+    &-default {
+      width: 100%;
+      display: flex;
+      height: 17.8rem;
+      align-items: center;
+      justify-content: center;
+      background-color: #c2c2c2;
+      &-img {
+        width: 10rem;
+      }
+    }
   }
 
   @media screen and (max-width: 464px) {
