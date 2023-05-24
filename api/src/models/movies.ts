@@ -9,7 +9,6 @@ const movieSchema = new Schema<Movie>(
     },
     image: {
       type: String,
-      required: true,
     },
     userId: {
       type: Types.ObjectId,
