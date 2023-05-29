@@ -2,7 +2,6 @@ import "./Detail.scss";
 import { MovieDetail } from "@/types";
 import image from "@/assets/default.svg";
 import { useEffect, useState } from "react";
-import { FaBookmark } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
@@ -15,12 +14,10 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { _id, token, movies } = useGetUser();
-  const [isSave, setIsSave] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     if (movies && movies.length > 0) {
-      setIsSave(!!movies.find((m) => +m.id === movie.id && m.type === "save"));
       setIsFavorite(
         !!movies.find((m) => +m.id === movie.id && m.type === "favorite")
       );
