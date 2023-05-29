@@ -24,7 +24,7 @@ export const SearchBar = () => {
         onChange={handleChange}
         placeholder="Buscar películas"
       />
-      <button className="Search-button" type={"submit"}>
+      <button className="Search-button" type={"submit"} aria-label="Search">
         <FiSearch className="Search-button-icon" size={24} />
       </button>
     </form>

@@ -77,33 +77,42 @@ export const Carousel = ({ carousel }: CarouselProps) => {
         </span>
         <p>{selectedImage?.description}</p>
       </section>
-      <button className="Carousel-button--prev" onClick={prev} type={"button"}>
+      <button
+        className="Carousel-button--prev"
+        onClick={prev}
+        type={"button"}
+        aria-label="Previous"
+      >
         <IoIosArrowBack size={50} />
       </button>
-      <button className="Carousel-button--next" onClick={next} type={"button"}>
+      <button
+        className="Carousel-button--next"
+        onClick={next}
+        type={"button"}
+        aria-label="Next"
+      >
         <IoIosArrowForward size={50} />
       </button>
       <div className="Carousel-dots">
-        {carousel.map((movie, index) => {
-          if (index === selectedIndex) {
-            return (
-              <button
-                type="button"
-                key={movie.id}
-                className="Carousel-dot active"
-                onClick={() => changeImage(index)}
-              ></button>
-            );
-          }
-          return (
+        {carousel.map((movie, index) =>
+          index === selectedIndex ? (
+            <button
+              type="button"
+              key={movie.id}
+              className="Carousel-dot active"
+              aria-label="Dot Carousel"
+              onClick={() => changeImage(index)}
+            ></button>
+          ) : (
             <button
               type="button"
               key={movie.id}
               className="Carousel-dot"
+              aria-label="Dot Carousel"
               onClick={() => changeImage(index)}
             ></button>
-          );
-        })}
+          )
+        )}
       </div>
     </div>
   );
