@@ -10,8 +10,8 @@ export const Button = ({ children, color }: ButtonProps) => {
   return (
     <Link to={children === "Entrar" ? "/login" : "/signin"}>
       <button
-        className={color === "dark" ? "ButtonDark" : "ButtonWhite"}
         type="button"
+        className={color === "dark" ? "ButtonDark" : "ButtonWhite"}
       >
         {children}
       </button>

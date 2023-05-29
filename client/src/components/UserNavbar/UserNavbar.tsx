@@ -29,7 +29,7 @@ export function UserNavbar() {
         <img className="UserNavbar-content-logo" src={userLogo} />
         <p className="UserNavbar-content-text">{username}</p>
       </div>
-      <button className="UserNavbar-button">
+      <button type="button" className="UserNavbar-button">
         <IoIosArrowDown color="#ffffff" />
       </button>
       <div

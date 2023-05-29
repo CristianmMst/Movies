@@ -88,6 +88,7 @@ export const Carousel = ({ carousel }: CarouselProps) => {
           if (index === selectedIndex) {
             return (
               <button
+                type="button"
                 key={movie.id}
                 className="Carousel-dot active"
                 onClick={() => changeImage(index)}
@@ -96,6 +97,7 @@ export const Carousel = ({ carousel }: CarouselProps) => {
           }
           return (
             <button
+              type="button"
               key={movie.id}
               className="Carousel-dot"
               onClick={() => changeImage(index)}

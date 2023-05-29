@@ -93,6 +93,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
           </div>
           <div className="Detail-buttons">
             <button
+              type="button"
               className="Detail-buttons-button"
               onClick={addFavoriteMovie}
             >
