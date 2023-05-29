@@ -14,11 +14,6 @@ const movieSchema = new Schema<Movie>(
       type: Types.ObjectId,
       required: true,
     },
-    type: {
-      type: String,
-      enum: ["save", "favorite"],
-      required: true,
-    },
   },
   {
     timestamps: false,
