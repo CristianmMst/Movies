@@ -26,10 +26,14 @@ export function UserNavbar() {
   return (
     <div className="UserNavbar" onClick={onClick}>
       <div className="UserNavbar-content">
-        <img className="UserNavbar-content-logo" src={userLogo} />
+        <img className="UserNavbar-content-logo" src={userLogo} alt="profile" />
         <p className="UserNavbar-content-text">{username}</p>
       </div>
-      <button type="button" className="UserNavbar-button">
+      <button
+        type="button"
+        className="UserNavbar-button"
+        aria-label="arrow-down"
+      >
         <IoIosArrowDown color="#ffffff" />
       </button>
       <div
