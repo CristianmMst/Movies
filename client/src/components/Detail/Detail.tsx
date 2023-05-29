@@ -11,33 +11,33 @@ import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
 import { createMovieUser, removeMovieUser } from "@/redux/slices/userSlice";
 
 export const Detail = ({ movie }: { movie: MovieDetail }) => {
+  const { user } = useGetUser();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { _id, token, movies } = useGetUser();
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    if (movies && movies.length > 0) {
-      setIsFavorite(!!movies.find((m) => +m.id === movie.id));
+    if (user.movies && user.movies.length > 0) {
+      setIsFavorite(!!user.movies.find((m) => +m.id === movie.id));
     }
-  }, [movies]);
+  }, [user.movies]);
 
   const addFavoriteMovie = () => {
-    if (!token) return navigate("/login");
+    if (!user.token) return navigate("/login");
 
-    const movieFind = movies.find((m) => +m.id === movie.id);
+    const movieFind = user.movies.find((m) => +m.id === movie.id);
     if (movieFind) {
-      dispatch(removeMovieUser(movieFind._id, token));
+      dispatch(removeMovieUser(movieFind._id, user.token));
       setIsFavorite(false);
     } else {
       const createMovie = {
         id: movie.id,
-        userId: _id,
+        userId: user._id,
         image: movie.poster_path
           ? `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`
           : null,
       };
-      dispatch(createMovieUser(createMovie, token));
+      dispatch(createMovieUser(createMovie, user.token));
       setIsFavorite(true);
     }
   };

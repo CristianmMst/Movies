@@ -3,12 +3,12 @@ type MovieType = "save" | "favorite";
 export interface User {
   _id: string;
   email: string;
-  movies: UserMovies[];
+  movies: Movies[];
   token: string | null;
   username: string | null;
 }
 
-export interface UserMovies {
+export interface Movies {
   id: string;
   _id: string;
   image: string;

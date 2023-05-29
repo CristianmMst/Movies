@@ -4,10 +4,11 @@ import { setUserFetch } from "@/redux/slices/userSlice";
 
 export const useGetUser = () => {
   const dispatch = useAppDispatch();
-  const { token, _id, movies } = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user);
+
   useEffect(() => {
-    dispatch(setUserFetch(token!));
+    dispatch(setUserFetch(user.token!));
   }, []);
 
-  return { token, _id, movies };
+  return { user };
 };

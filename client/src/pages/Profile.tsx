@@ -2,7 +2,7 @@ import { Tabs } from "@/components";
 import { useGetUser } from "@/hooks/useGetUser";
 
 export const Profile = () => {
-  useGetUser();
+  const { user } = useGetUser();
 
-  return <Tabs />;
+  return <Tabs user={user} />;
 };

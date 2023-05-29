@@ -1,12 +1,15 @@
 import "./Tabs.scss";
+import { User } from "@/types";
 import { useState } from "react";
 import empty from "@/assets/noData.svg";
-import { useAppSelector } from "@/hooks/redux";
-import { UserMovies } from "../UserMovies/UserMovies";
+import { UserMovies } from "@/components";
 
-export const Tabs = () => {
+interface Props {
+  user: User;
+}
+
+export const Tabs = ({ user }: Props) => {
   const [tabIndex, setTabIndex] = useState<number>(1);
-  const { movies } = useAppSelector((state) => state.user);
 
   const toggleTab = (index: number) => {
     setTabIndex(index);
@@ -39,15 +42,15 @@ export const Tabs = () => {
           }
         >
           <img src={empty} alt="empty" />
-          <h2>Cristian</h2>
-          <p>Agrega alguna pelicula</p>
+          <h2>{user.username}</h2>
+          <p>{user.email}</p>
         </div>
         <div
           className={
             tabIndex === 2 ? "Tabs-content content-active" : "content-disable"
           }
         >
-          {movies.length === 0 ? (
+          {user.movies.length === 0 ? (
             <>
               <img src={empty} alt="empty" />
               <h2>Lista Vacia</h2>
@@ -55,7 +58,7 @@ export const Tabs = () => {
             </>
           ) : (
             <div className="Tabs-content-movies">
-              {movies.map((movie) => (
+              {user.movies.map((movie) => (
                 <UserMovies key={movie.id} movie={movie} />
               ))}
             </div>
