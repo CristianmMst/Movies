@@ -7,46 +7,43 @@ import { AiFillHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "@/hooks/redux";
 import { useGetUser } from "@/hooks/useGetUser";
-import { createMovieUser, removeMovieUser } from "@/redux/slices/userSlice";
 import { API_IMAGE, API_IMAGE_POSTER_DETAIL } from "@/consts";
 import { averagePercentage, toHoursAndMinutes } from "@/utils/movie";
+import { createMovieUser, removeMovieUser } from "@/redux/slices/userSlice";
 
 export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
   const { _id, token, movies } = useGetUser();
   const [isSave, setIsSave] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    setIsSave(!!movies.find((m) => +m.id === movie.id && m.type === "save"));
-    setIsFavorite(
-      !!movies.find((m) => +m.id === movie.id && m.type === "favorite")
-    );
+    if (movies && movies.length > 0) {
+      setIsSave(!!movies.find((m) => +m.id === movie.id && m.type === "save"));
+      setIsFavorite(
+        !!movies.find((m) => +m.id === movie.id && m.type === "favorite")
+      );
+    }
   }, [movies]);
 
-  const onClick = (type: string) => {
-    if (token) {
-      const movieFind = movies.find((m) => +m.id === movie.id);
+  const addFavoriteMovie = () => {
+    if (!token) return navigate("/login");
 
-      if (movieFind) {
-        dispatch(removeMovieUser(movieFind._id, token));
-        type === "favorite" ? setIsFavorite(false) : setIsSave(false);
-      } else {
-        const createMovie = {
-          id: movie.id,
-          type: type,
-          userId: _id,
-          image: movie.poster_path
-            ? `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`
-            : null,
-        };
-        type === "favorite" ? setIsFavorite(true) : setIsSave(true);
-        dispatch(createMovieUser(createMovie, token));
-      }
+    const movieFind = movies.find((m) => +m.id === movie.id);
+    if (movieFind) {
+      dispatch(removeMovieUser(movieFind._id, token));
+      setIsFavorite(false);
     } else {
-      navigate("/login");
+      const createMovie = {
+        id: movie.id,
+        userId: _id,
+        image: movie.poster_path
+          ? `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`
+          : null,
+      };
+      dispatch(createMovieUser(createMovie, token));
+      setIsFavorite(true);
     }
   };
 
@@ -102,20 +99,13 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
           <div className="Detail-buttons">
             <button
               className="Detail-buttons-button"
-              onClick={() => onClick("favorite")}
+              onClick={addFavoriteMovie}
             >
               <AiFillHeart
                 size={20}
                 color={`${isFavorite ? "red" : "white"}`}
               />
               <span className="Detail-buttons-tooltip">Favoritos</span>
-            </button>
-            <button
-              className="Detail-buttons-button"
-              onClick={() => onClick("save")}
-            >
-              <FaBookmark size={20} color={`${isSave ? "yellow" : "white"}`} />
-              <span className="Detail-buttons-tooltip">Guardar</span>
             </button>
           </div>
         </div>
