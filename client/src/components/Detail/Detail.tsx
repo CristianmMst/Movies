@@ -18,9 +18,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
 
   useEffect(() => {
     if (movies && movies.length > 0) {
-      setIsFavorite(
-        !!movies.find((m) => +m.id === movie.id && m.type === "favorite")
-      );
+      setIsFavorite(!!movies.find((m) => +m.id === movie.id));
     }
   }, [movies]);
 
