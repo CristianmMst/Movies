@@ -1,7 +1,12 @@
 import { AppThunk } from "../store";
 import { MovieDetail, User } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchCreateMovie, fetchDeleteMovie, fetchUserData } from "@/services";
+import {
+  fetchChangeUsername,
+  fetchCreateMovie,
+  fetchDeleteMovie,
+  fetchUserData,
+} from "@/services";
 
 const initialState: User = {
   _id: "",
@@ -32,6 +37,10 @@ const userSlice = createSlice({
       localStorage.removeItem("token");
       localStorage.removeItem("username");
     },
+    changeUsername: (state, { payload }) => {
+      state.username = payload;
+      localStorage.setItem("username", payload);
+    },
     createMovie: (state, { payload }) => {
       state.movies = [...state.movies, payload];
     },
@@ -45,8 +54,19 @@ export const setUserFetch =
   (token: string): AppThunk =>
   async (dispatch) => {
     try {
-      const userData = await fetchUserData(token);
+      const userData = await fetchUserData();
       dispatch(setUser(userData));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const renameUsername =
+  (username: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      await fetchChangeUsername(username);
+      dispatch(changeUsername(username));
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +76,7 @@ export const createMovieUser =
   (movie: MovieDetail, token: string): AppThunk =>
   async (dispatch) => {
     try {
-      const data = await fetchCreateMovie(movie, token);
+      const data = await fetchCreateMovie(movie);
       dispatch(createMovie(data));
     } catch (error) {
       console.log(error);
@@ -67,14 +87,20 @@ export const removeMovieUser =
   (id: string, _id: string): AppThunk =>
   async (dispatch) => {
     try {
-      const response = await fetchDeleteMovie(id, _id);
+      const response = await fetchDeleteMovie(id);
       dispatch(removeMovie(response));
     } catch (error) {
       console.log(error);
     }
   };
 
-export const { setToken, clearToken, setUser, removeMovie, createMovie } =
-  userSlice.actions;
+export const {
+  setToken,
+  clearToken,
+  setUser,
+  removeMovie,
+  createMovie,
+  changeUsername,
+} = userSlice.actions;
 
 export default userSlice.reducer;
