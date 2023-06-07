@@ -5,6 +5,7 @@ const router = Router();
 
 router
   .get("/", profileController.getUserData)
+  .put("/", profileController.changeUsername)
   .post("/movies", profileController.createMovie)
   .delete("/movies/:id", profileController.deteleMovie);
 

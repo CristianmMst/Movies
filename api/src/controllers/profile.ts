@@ -17,8 +17,7 @@ export const createMovie = async (req: RequestExt, res: Response) => {
   try {
     const createMovie = await profileServices.createMovie(movie);
     return res.send(createMovie);
-  } catch (err) {
-    const error = err as Error;
+  } catch (error) {
     return res.status(404).json({ error: error.message });
   }
 };
@@ -29,8 +28,18 @@ export const deteleMovie = async (req: RequestExt, res: Response) => {
   try {
     const deteleMovie = await profileServices.deleteMovie(id, _id);
     return res.send(deteleMovie);
-  } catch (err) {
-    const error = err as Error;
+  } catch (error) {
+    return res.status(404).json({ error: error.message });
+  }
+};
+
+export const changeUsername = async (req: RequestExt, res: Response) => {
+  const { username } = req.body;
+  const { _id } = req.user as JwtPayloadExt;
+  try {
+    const user = await profileServices.changeUsername(_id, username);
+    res.send(user);
+  } catch (error) {
     return res.status(404).json({ error: error.message });
   }
 };

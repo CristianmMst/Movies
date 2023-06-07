@@ -42,3 +42,11 @@ export const deleteMovie = async (id: string, _id: string) => {
   const deleteMovie = await movieModel.findByIdAndDelete(id);
   return deleteMovie;
 };
+
+export const changeUsername = async (id: string, username: string) => {
+  const user = await userModel.findByIdAndUpdate(id, {
+    username: username,
+  });
+  console.log(user);
+  return user;
+};
