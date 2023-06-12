@@ -76,7 +76,6 @@ export const LogIn = () => {
         <p className="Login-form-errorText">
           {errors.email?.message || errors.password?.message || response?.error}
         </p>
-        <p className="forgot">¿Olvidaste tu contraseña?</p>
       </div>
     </div>
   );
