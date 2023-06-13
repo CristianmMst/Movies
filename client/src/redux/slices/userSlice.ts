@@ -39,7 +39,7 @@ const userSlice = createSlice({
     },
     changeUsername: (state, { payload }) => {
       state.username = payload;
-      localStorage.setItem("username", payload);
+      localStorage.up("username", payload);
     },
     createMovie: (state, { payload }) => {
       state.movies = [...state.movies, payload];
@@ -50,16 +50,14 @@ const userSlice = createSlice({
   },
 });
 
-export const setUserFetch =
-  (token: string): AppThunk =>
-  async (dispatch) => {
-    try {
-      const userData = await fetchUserData();
-      dispatch(setUser(userData));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const setUserFetch = (): AppThunk => async (dispatch) => {
+  try {
+    const userData = await fetchUserData();
+    dispatch(setUser(userData));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const renameUsername =
   (username: string): AppThunk =>
@@ -73,7 +71,7 @@ export const renameUsername =
   };
 
 export const createMovieUser =
-  (movie: MovieDetail, token: string): AppThunk =>
+  (movie: MovieDetail): AppThunk =>
   async (dispatch) => {
     try {
       const data = await fetchCreateMovie(movie);
