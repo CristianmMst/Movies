@@ -7,7 +7,7 @@ export const useGetUser = () => {
   const user = useAppSelector((state) => state.user);
 
   useEffect(() => {
-    dispatch(setUserFetch(user.token!));
+    dispatch(setUserFetch());
   }, []);
 
   return { user };
