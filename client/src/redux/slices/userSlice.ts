@@ -45,7 +45,7 @@ const userSlice = createSlice({
       state.movies = [...state.movies, payload];
     },
     removeMovie: (state, { payload }) => {
-      state.movies = state.movies.filter((m) => m.id !== payload.id);
+      state.movies = state.movies.filter((m) => m && m._id !== payload);
     },
   },
 });
@@ -72,7 +72,12 @@ export const renameUsername =
 
 export const createMovieUser =
   (movie: MovieDetail): AppThunk =>
-  async (dispatch) => {
+  async (dispatch, getState) => {
+    const { user } = getState();
+    if (user.movies.find((m) => +m.id === movie.id)) {
+      return;
+    }
+
     try {
       const data = await fetchCreateMovie(movie);
       dispatch(createMovie(data));
@@ -85,8 +90,8 @@ export const removeMovieUser =
   (id: string): AppThunk =>
   async (dispatch) => {
     try {
-      const response = await fetchDeleteMovie(id);
-      dispatch(removeMovie(response));
+      await fetchDeleteMovie(id);
+      dispatch(removeMovie(id));
     } catch (error) {
       console.log(error);
     }

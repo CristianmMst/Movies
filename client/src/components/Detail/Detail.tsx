@@ -17,7 +17,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    if (user.movies && user.movies.length > 0) {
+    if (user.movies) {
       setIsFavorite(!!user.movies.find((m) => +m.id === movie.id));
     }
   }, [user.movies]);
@@ -26,7 +26,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
     if (!user.token) return navigate("/login");
 
     const movieFind = user.movies.find((m) => +m.id === movie.id);
-    if (movieFind) {
+    if (movieFind && isFavorite) {
       dispatch(removeMovieUser(movieFind._id));
       setIsFavorite(false);
     } else {
