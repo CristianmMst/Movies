@@ -82,7 +82,7 @@ export const createMovieUser =
   };
 
 export const removeMovieUser =
-  (id: string, _id: string): AppThunk =>
+  (id: string): AppThunk =>
   async (dispatch) => {
     try {
       const response = await fetchDeleteMovie(id);

@@ -27,7 +27,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
 
     const movieFind = user.movies.find((m) => +m.id === movie.id);
     if (movieFind) {
-      dispatch(removeMovieUser(movieFind._id, user.token));
+      dispatch(removeMovieUser(movieFind._id));
       setIsFavorite(false);
     } else {
       const createMovie = {
@@ -37,7 +37,7 @@ export const Detail = ({ movie }: { movie: MovieDetail }) => {
           ? `${API_IMAGE_POSTER_DETAIL}${movie?.poster_path}`
           : null,
       };
-      dispatch(createMovieUser(createMovie, user.token));
+      dispatch(createMovieUser(createMovie));
       setIsFavorite(true);
     }
   };
