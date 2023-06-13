@@ -1,7 +1,7 @@
 import "./UserMovies.scss";
 import { Link } from "react-router-dom";
 import image from "@/assets/default.svg";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { useAppDispatch } from "@/hooks/redux";
 import { removeMovieUser } from "@/redux/slices/userSlice";
 
 interface UserMoviesProps {
@@ -14,10 +14,9 @@ interface UserMoviesProps {
 
 export const UserMovies = ({ movie }: UserMoviesProps) => {
   const dispatch = useAppDispatch();
-  const { token } = useAppSelector((state) => state.user);
 
   const deleteMovie = (id: string) => {
-    dispatch(removeMovieUser(id, token!));
+    dispatch(removeMovieUser(id));
   };
 
   return (
