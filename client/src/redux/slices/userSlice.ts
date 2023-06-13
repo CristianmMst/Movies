@@ -39,7 +39,7 @@ const userSlice = createSlice({
     },
     changeUsername: (state, { payload }) => {
       state.username = payload;
-      localStorage.up("username", payload);
+      localStorage.setItem("username", payload);
     },
     createMovie: (state, { payload }) => {
       state.movies = [...state.movies, payload];
