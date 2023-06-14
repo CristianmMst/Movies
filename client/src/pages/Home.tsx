@@ -1,7 +1,9 @@
 import { useGetMovies } from "@/hooks";
 import { Slider, Carousel, Navbar } from "@/components";
+import { useAuthentication } from "@/hooks/useAuthentication";
 
 export const Home = () => {
+  useAuthentication();
   const { carousel, popular, topRated } = useGetMovies();
 
   return (

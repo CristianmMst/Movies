@@ -34,6 +34,7 @@ const userSlice = createSlice({
     },
     clearToken: (state) => {
       state.token = null;
+      state.username = null;
       localStorage.removeItem("token");
       localStorage.removeItem("username");
     },
